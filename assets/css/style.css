@@ -114,6 +114,7 @@ header{
   transform: rotate(25deg);
   opacity:.55;
 }
+.mark.sm{ width:28px; height:28px; border-radius:10px; }
 .brand strong{ font-size:14px; letter-spacing:.2px; }
 .brand span{ display:block; font-size:12px; color:var(--muted); margin-top:1px; }
 
@@ -138,14 +139,26 @@ header{
   min-width:0;
 }
 
-/* Dashboard grid */
+/* Shell */
 .shell{ padding: 14px 0 28px 0; }
+
+/* Dashboard grid */
 .dash{
   display:grid;
   grid-template-columns: var(--side) 1fr var(--rail);
   gap: var(--gap);
   align-items:start;
 }
+
+/* Reusable page grids (Library, etc.) */
+.pageGrid{
+  display:grid;
+  gap: var(--gap);
+  align-items:start;
+}
+.pageGrid.one{ grid-template-columns: 1fr; }
+.pageGrid.two{ grid-template-columns: 1fr minmax(280px, 360px); }
+.pageGrid.three{ grid-template-columns: minmax(260px, 320px) 1fr minmax(280px, 360px); }
 
 /* Sidebar / rail shared blocks */
 .sidebar, .rail{ padding:12px; }
@@ -401,14 +414,61 @@ header{
   flex-wrap:wrap;
 }
 
+/* Footer */
+.siteFooter{
+  margin-top: 18px;
+  padding: 18px 0 26px 0;
+  border-top: 1px solid rgba(15,23,42,.08);
+  background: rgba(246,247,251,.62);
+  backdrop-filter: blur(10px);
+}
+.footerGrid{
+  display:grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 14px;
+  align-items:center;
+}
+.footerBrand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+.footerBrand strong{ font-size:13px; }
+.footerBrand span{ display:block; font-size:12px; color: var(--muted); margin-top:2px; }
+.footerNav{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.footerNav a{
+  font-size:12.5px;
+  color: rgba(15,23,42,.72);
+  text-decoration: underline;
+  text-decoration-color: rgba(15,23,42,.18);
+  text-underline-offset: 3px;
+}
+.footerMeta{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
 /* Responsive */
 @media (max-width: 980px){
   .dash{ grid-template-columns: 1fr; }
   .topgrid{ grid-template-columns: 1fr auto; gap:10px; }
   .globalSearch{ display:none; }
   .sidebar,.rail{ position:relative; top:auto; }
+
+  .pageGrid.two, .pageGrid.three{ grid-template-columns: 1fr; }
   .itemShell{ grid-template-columns: 1fr; }
   .itemAside{ position:relative; top:auto; }
+
+  .footerGrid{ grid-template-columns: 1fr; }
+  .footerMeta{ justify-content:flex-start; }
 }
 @media (max-width: 520px){
   .topActions .btn:not(.primary){ display:none; }
