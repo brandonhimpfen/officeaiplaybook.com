@@ -1,7 +1,7 @@
-/* Patch: make Library item pages neat even if they use the default layout.
-   - Adds a constrained reading width wrapper
-   - Renders markdown via markdownify in default layout (see _layouts/default.html)
-   - Keeps typography consistent with the "prose" styles
+/* Patch: make library item pages and library content feel neat + professional
+   - Constrain reading width (avoids full-width text)
+   - Add "prose" typography styling for rendered markdown
+   - Ensure markdown headings render cleanly and consistently
 */
 
 :root{
@@ -148,11 +148,195 @@ header{
 /* Shell */
 .shell{ padding: 14px 0 28px 0; }
 
-/* Library reading wrapper used by default layout */
-.readingShell{
+/* Dashboard grid */
+.dash{
+  display:grid;
+  grid-template-columns: var(--side) 1fr var(--rail);
+  gap: var(--gap);
+  align-items:start;
+}
+
+/* Reusable page grids (Library, etc.) */
+.pageGrid{
+  display:grid;
+  gap: var(--gap);
+  align-items:start;
+}
+.pageGrid.one{ grid-template-columns: 1fr; }
+.pageGrid.two{ grid-template-columns: 1fr minmax(280px, 360px); }
+.pageGrid.three{ grid-template-columns: minmax(260px, 320px) 1fr minmax(280px, 360px); }
+
+/* Sidebar / rail shared blocks */
+.sidebar, .rail{ padding:12px; }
+.sidebar{ position:sticky; top:74px; }
+.rail{ position:sticky; top:74px; }
+
+.sideSection, .railBox{
+  padding:12px;
+  border-radius: var(--radius);
+  border:1px solid rgba(15,23,42,.10);
+  background: rgba(255,255,255,.78);
+  box-shadow: var(--shadowSoft);
+  margin-bottom:12px;
+}
+.sideHead{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:10px; margin-bottom:10px;
+}
+.sideHead strong{ font-size:13px; }
+
+.navList{ display:grid; gap:8px; }
+.navItem{
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding:10px 10px;
+  border-radius:12px;
+  border:1px solid rgba(15,23,42,.08);
+  background: rgba(255,255,255,.74);
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+  font-size:13px;
+}
+.navItem:hover{
+  transform: translateY(-1px);
+  background: rgba(37,99,235,.08);
+  box-shadow: 0 14px 26px rgba(15,23,42,.08);
+}
+.navItem.active{
+  background:
+    radial-gradient(260px 160px at 20% 20%, rgba(37,99,235,.18), transparent 65%),
+    rgba(255,255,255,.86);
+  border-color: rgba(37,99,235,.22);
+}
+.hint{
+  margin-top:10px;
+  padding:10px 10px;
+  border-radius:12px;
+  border:1px solid rgba(15,23,42,.10);
+  background: rgba(255,255,255,.72);
+  color: rgba(15,23,42,.72);
+  font-size:12.5px;
+}
+
+/* Main column bits */
+.heroPanel{
+  padding:16px;
+  border-radius: var(--radius);
+  border:1px solid rgba(15,23,42,.10);
+  background:
+    radial-gradient(700px 260px at 14% 20%, rgba(37,99,235,.14), transparent 60%),
+    radial-gradient(600px 260px at 86% 10%, rgba(14,165,166,.10), transparent 60%),
+    rgba(255,255,255,.82);
+  box-shadow: var(--shadowSoft);
+}
+.heroRow{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.heroRow h1{
+  margin:0;
+  font-size: clamp(22px, 2.1vw, 30px);
+  line-height:1.1;
+  letter-spacing:-.01em;
+}
+.heroRow p{
+  margin-top:8px;
+  max-width: 78ch;
+  color: var(--muted);
+  font-size: 13.5px;
+}
+.heroActions{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+
+.sectionTitle{
+  display:flex; align-items:flex-end; justify-content:space-between;
+  gap:12px; margin:12px 0 10px 0;
+}
+.sectionTitle strong{ font-size:13.5px; }
+.sectionTitle span{ color: var(--muted); font-size:12.5px; }
+
+/* Feed cards */
+.feed{ display:grid; gap:10px; }
+.post{
+  padding:12px;
+  border-radius: var(--radius);
+  border:1px solid rgba(15,23,42,.10);
+  background: rgba(255,255,255,.78);
+  box-shadow: var(--shadowSoft);
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+  position:relative; overflow:hidden;
+}
+.post:before{
+  content:"";
+  position:absolute; inset:-2px; opacity:.55;
+  background: radial-gradient(320px 220px at 20% 20%, var(--glow), transparent 65%);
+  pointer-events:none;
+}
+.post > *{ position:relative; z-index:1; }
+.post:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.95);
+  box-shadow: 0 18px 34px rgba(15,23,42,.10);
+}
+.postTop{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.type{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:12px; padding:6px 10px; border-radius:999px;
+  border:1px solid rgba(15,23,42,.10);
+  background: rgba(255,255,255,.76);
+  color: rgba(15,23,42,.70);
+  width:max-content;
+}
+.postTitle{ margin-top:8px; font-weight:780; letter-spacing:-.01em; font-size: 14px; }
+.postDesc{ margin-top:6px; color: var(--muted); font-size:13px; max-width: 78ch; }
+.chips{ margin-top:10px; display:flex; gap:8px; flex-wrap:wrap; }
+.chip{
+  font-size:12px; padding:6px 10px; border-radius:999px;
+  border:1px solid rgba(15,23,42,.10);
+  background: rgba(255,255,255,.76);
+  color: rgba(15,23,42,.68);
+  white-space:nowrap;
+}
+
+/* Right rail items */
+.railBox strong{ font-size:13px; }
+.railList{ display:grid; gap:8px; margin-top:10px; }
+.quick{
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding:10px 10px;
+  border-radius:12px;
+  border:1px solid rgba(15,23,42,.08);
+  background: rgba(255,255,255,.74);
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+  font-size:13px;
+}
+.quick:hover{
+  transform: translateY(-1px);
+  background: rgba(14,165,166,.08);
+  box-shadow: 0 14px 26px rgba(15,23,42,.08);
+}
+
+/* Reveal */
+.reveal{ opacity:0; transform: translateY(10px); }
+.reveal.in{ opacity:1; transform: translateY(0); transition: opacity .6s ease, transform .6s ease; }
+
+/* Item pages (neater width + typography) */
+.itemShell{
+  display:grid;
+  grid-template-columns: var(--side) 1fr;
+  gap: var(--gap);
+  align-items:start;
+}
+.itemAside{
+  position:sticky;
+  top:74px;
+  padding:12px;
+}
+.itemMain{ min-width:0; }
+.itemMainInner{
   width: min(920px, 100%);
 }
-.readingHero{
+.itemHero{
   padding:16px;
   border-radius: var(--radius);
   border:1px solid rgba(15,23,42,.10);
@@ -162,7 +346,6 @@ header{
     rgba(255,255,255,.84);
   box-shadow: var(--shadowSoft);
 }
-
 .itemBreadcrumb{
   display:flex; align-items:center; gap:8px;
   color: rgba(15,23,42,.62);
@@ -171,6 +354,12 @@ header{
 }
 .itemBreadcrumb a{ text-decoration:underline; text-decoration-color: rgba(15,23,42,.20); }
 .dot{ opacity:.6; }
+.itemHero h1{
+  margin:0;
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height:1.12;
+  letter-spacing:-.01em;
+}
 .itemSub{
   margin:10px 0 0 0;
   color: var(--muted);
@@ -198,7 +387,7 @@ header{
   flex-wrap:wrap;
 }
 
-/* Prose (markdown rendered) */
+/* Prose styles for markdown-rendered content */
 .prose{
   color: rgba(15,23,42,.80);
   font-size: 13.5px;
@@ -297,9 +486,15 @@ header{
 
 /* Responsive */
 @media (max-width: 980px){
+  .dash{ grid-template-columns: 1fr; }
   .topgrid{ grid-template-columns: 1fr auto; gap:10px; }
   .globalSearch{ display:none; }
-  .readingShell{ width:100%; }
+  .sidebar,.rail{ position:relative; top:auto; }
+
+  .pageGrid.two, .pageGrid.three{ grid-template-columns: 1fr; }
+  .itemShell{ grid-template-columns: 1fr; }
+  .itemAside{ position:relative; top:auto; padding:0; }
+  .itemMainInner{ width:100%; }
 
   .footerGrid{ grid-template-columns: 1fr; }
   .footerMeta{ justify-content:flex-start; }
