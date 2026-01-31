@@ -1,3 +1,9 @@
+/* Patch: make library item pages and library content feel neat + professional
+   - Constrain reading width (avoids full-width text)
+   - Add "prose" typography styling for rendered markdown
+   - Ensure markdown headings render cleanly and consistently
+*/
+
 :root{
   --bg:#f6f7fb;
   --text:#0f172a;
@@ -314,7 +320,7 @@ header{
 .reveal{ opacity:0; transform: translateY(10px); }
 .reveal.in{ opacity:1; transform: translateY(0); transition: opacity .6s ease, transform .6s ease; }
 
-/* Item pages */
+/* Item pages (neater width + typography) */
 .itemShell{
   display:grid;
   grid-template-columns: var(--side) 1fr;
@@ -325,6 +331,10 @@ header{
   position:sticky;
   top:74px;
   padding:12px;
+}
+.itemMain{ min-width:0; }
+.itemMainInner{
+  width: min(920px, 100%);
 }
 .itemHero{
   padding:16px;
@@ -370,48 +380,66 @@ header{
   background: rgba(255,255,255,.82);
   box-shadow: var(--shadowSoft);
 }
-.itemCard h2{
-  margin:18px 0 8px 0;
-  font-size:14px;
-  letter-spacing:.1px;
-}
-.itemCard p{ margin:8px 0; color: rgba(15,23,42,.78); font-size:13.5px; }
-.callout{
-  margin:12px 0;
-  padding:12px;
-  border-radius: 14px;
-  border:1px solid rgba(15,23,42,.10);
-  background: rgba(255,255,255,.72);
-  color: rgba(15,23,42,.74);
-  font-size:13px;
-}
-.codebox{
-  margin-top:10px;
-  border-radius: 14px;
-  border:1px solid rgba(15,23,42,.10);
-  background: rgba(255,255,255,.72);
-  overflow:hidden;
-}
-.codebox .codebar{
-  display:flex; align-items:center; justify-content:space-between;
-  gap:10px;
-  padding:10px 10px;
-  border-bottom:1px solid rgba(15,23,42,.08);
-}
-.codebox pre{
-  margin:0;
-  padding:12px 12px;
-  overflow:auto;
-  font-size:12.5px;
-  line-height:1.45;
-  color: rgba(15,23,42,.86);
-  white-space:pre;
-}
 .itemFooter{
   margin:12px 0 2px 0;
   display:flex;
   gap:10px;
   flex-wrap:wrap;
+}
+
+/* Prose styles for markdown-rendered content */
+.prose{
+  color: rgba(15,23,42,.80);
+  font-size: 13.5px;
+}
+.prose h2{
+  margin:18px 0 8px 0;
+  font-size:14px;
+  letter-spacing:.1px;
+  color: rgba(15,23,42,.92);
+}
+.prose h3{
+  margin:14px 0 8px 0;
+  font-size:13.5px;
+  color: rgba(15,23,42,.90);
+}
+.prose p{ margin:10px 0; }
+.prose ul, .prose ol{
+  margin:10px 0 10px 18px;
+  padding:0;
+}
+.prose li{ margin:6px 0; }
+.prose hr{
+  border:none;
+  border-top:1px solid rgba(15,23,42,.10);
+  margin:14px 0;
+}
+.prose code{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 12.5px;
+  padding: 2px 6px;
+  border-radius: 8px;
+  border:1px solid rgba(15,23,42,.10);
+  background: rgba(255,255,255,.72);
+}
+.prose pre{
+  margin:10px 0;
+  padding:12px;
+  border-radius: 14px;
+  border:1px solid rgba(15,23,42,.10);
+  background: rgba(255,255,255,.72);
+  overflow:auto;
+  font-size:12.5px;
+  line-height:1.45;
+}
+.prose blockquote{
+  margin:12px 0;
+  padding:10px 12px;
+  border-left: 3px solid rgba(37,99,235,.35);
+  border-radius: 12px;
+  border:1px solid rgba(15,23,42,.10);
+  background: rgba(255,255,255,.74);
+  color: rgba(15,23,42,.74);
 }
 
 /* Footer */
@@ -465,7 +493,8 @@ header{
 
   .pageGrid.two, .pageGrid.three{ grid-template-columns: 1fr; }
   .itemShell{ grid-template-columns: 1fr; }
-  .itemAside{ position:relative; top:auto; }
+  .itemAside{ position:relative; top:auto; padding:0; }
+  .itemMainInner{ width:100%; }
 
   .footerGrid{ grid-template-columns: 1fr; }
   .footerMeta{ justify-content:flex-start; }

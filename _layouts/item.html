@@ -40,28 +40,30 @@
         </aside>
 
         <section class="itemMain">
-          <div class="itemHero reveal">
-            <div class="itemBreadcrumb">
-              <a href="{{ '/library/' | relative_url }}">Library</a>
-              <span class="dot">•</span>
-              <span>{{ page.category }}</span>
+          <div class="itemMainInner">
+            <div class="itemHero reveal">
+              <div class="itemBreadcrumb">
+                <a href="{{ '/library/' | relative_url }}">Library</a>
+                <span class="dot">•</span>
+                <span>{{ page.category }}</span>
+              </div>
+              <h1>{{ page.title }}</h1>
+              {% if page.subtitle %}<p class="itemSub">{{ page.subtitle }}</p>{% endif %}
+              <div class="itemMeta">
+                {% if page.time %}<span class="pill">{{ page.time }}</span>{% endif %}
+                {% if page.level %}<span class="pill">{{ page.level }}</span>{% endif %}
+                {% if page.tag %}<span class="pill">{{ page.tag }}</span>{% endif %}
+              </div>
             </div>
-            <h1>{{ page.title }}</h1>
-            {% if page.subtitle %}<p class="itemSub">{{ page.subtitle }}</p>{% endif %}
-            <div class="itemMeta">
-              {% if page.time %}<span class="pill">{{ page.time }}</span>{% endif %}
-              {% if page.level %}<span class="pill">{{ page.level }}</span>{% endif %}
-              {% if page.tag %}<span class="pill">{{ page.tag }}</span>{% endif %}
+
+            <div class="itemCard reveal prose">
+              {{ content | markdownify }}
             </div>
-          </div>
 
-          <div class="itemCard reveal">
-            {{ content }}
-          </div>
-
-          <div class="itemFooter reveal">
-            <a class="btn" href="{{ '/library/' | relative_url }}">Back to library</a>
-            <a class="btn primary" href="{{ '/' | relative_url }}">Return to dashboard</a>
+            <div class="itemFooter reveal">
+              <a class="btn" href="{{ '/library/' | relative_url }}">Back to library</a>
+              <a class="btn primary" href="{{ '/' | relative_url }}">Return to dashboard</a>
+            </div>
           </div>
         </section>
       </div>
