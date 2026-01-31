@@ -1,0 +1,26 @@
+<header>
+  <div class="container">
+    <div class="topgrid">
+      <a class="brand" href="{{ '/' | relative_url }}">
+        <div class="mark" aria-hidden="true"></div>
+        <div>
+          <strong>{{ site.title }}</strong>
+          <span>Handbook-style workflows for office work.</span>
+        </div>
+      </a>
+
+      <div class="globalSearch" role="search" aria-label="Global search">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/>
+          <path d="M16.5 16.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <input id="globalSearchInput" placeholder="Search the playbook: email, minutes, redaction, status updates…" />
+      </div>
+
+      <div class="topActions">
+        <a class="btn" href="{{ '/library/' | relative_url }}">Library</a>
+        <a class="btn primary" href="{{ '/library/starter-pack/' | relative_url }}">Starter pack</a>
+      </div>
+    </div>
+  </div>
+</header>

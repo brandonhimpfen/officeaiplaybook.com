@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  {% include head.html %}
+</head>
+<body>
+  {% include header.html %}
+
+  <main class="shell">
+    <div class="container">
+      <div class="itemShell">
+        <aside class="itemAside reveal">
+          <div class="sideSection">
+            <div class="sideHead">
+              <strong>Library</strong>
+              <span class="pill">Item</span>
+            </div>
+            <div class="navList">
+              <a class="navItem" href="{{ '/library/' | relative_url }}"><span>All items</span><span class="pill">Index</span></a>
+              <a class="navItem" href="{{ '/' | relative_url }}"><span>Dashboard</span><span class="pill">Home</span></a>
+            </div>
+            <div class="hint">
+              <strong>Calm rule:</strong> keep sensitive data out, and review before you send or share.
+            </div>
+          </div>
+
+          {% if page.related %}
+          <div class="sideSection">
+            <div class="sideHead">
+              <strong>Related</strong>
+              <span class="pill">Next</span>
+            </div>
+            <div class="navList">
+              {% for r in page.related %}
+              <a class="navItem" href="{{ r.url | relative_url }}"><span>{{ r.label }}</span><span class="pill">{{ r.tag }}</span></a>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+        </aside>
+
+        <section class="itemMain">
+          <div class="itemHero reveal">
+            <div class="itemBreadcrumb">
+              <a href="{{ '/library/' | relative_url }}">Library</a>
+              <span class="dot">•</span>
+              <span>{{ page.category }}</span>
+            </div>
+            <h1>{{ page.title }}</h1>
+            {% if page.subtitle %}<p class="itemSub">{{ page.subtitle }}</p>{% endif %}
+            <div class="itemMeta">
+              {% if page.time %}<span class="pill">{{ page.time }}</span>{% endif %}
+              {% if page.level %}<span class="pill">{{ page.level }}</span>{% endif %}
+              {% if page.tag %}<span class="pill">{{ page.tag }}</span>{% endif %}
+            </div>
+          </div>
+
+          <div class="itemCard reveal">
+            {{ content }}
+          </div>
+
+          <div class="itemFooter reveal">
+            <a class="btn" href="{{ '/library/' | relative_url }}">Back to library</a>
+            <a class="btn primary" href="{{ '/' | relative_url }}">Return to dashboard</a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+</html>

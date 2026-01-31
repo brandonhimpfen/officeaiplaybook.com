@@ -4,38 +4,12 @@ description: A calm dashboard for learning AI at work.
 layout: default
 ---
 
-<header>
-  <div class="container">
-    <div class="topgrid">
-      <a class="brand" href="{{ '/' | relative_url }}">
-        <div class="mark" aria-hidden="true"></div>
-        <div>
-          <strong>{{ site.title }}</strong>
-          <span>Handbook-style workflows for office work.</span>
-        </div>
-      </a>
-
-      <div class="globalSearch" role="search" aria-label="Global search">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/>
-          <path d="M16.5 16.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <input id="globalSearchInput" placeholder="Search the playbook: email, minutes, redaction, status updates…" />
-      </div>
-
-      <div class="topActions">
-        <a class="btn" href="#library">Library</a>
-        <a class="btn primary" href="#starter">Starter pack</a>
-      </div>
-    </div>
-  </div>
-</header>
+{% include header.html %}
 
 <main class="shell">
   <div class="container">
     <div class="dash">
 
-      <!-- LEFT SIDEBAR -->
       <aside class="sidebar reveal">
         <div class="sideSection">
           <div class="sideHead">
@@ -53,7 +27,7 @@ layout: default
           </div>
 
           <div class="hint">
-            <strong>Calm rule:</strong> every item here assumes human review. If it can be wrong, it must be checked.
+            <strong>Calm rule:</strong> every item assumes human review. If it can be wrong, it must be checked.
           </div>
         </div>
 
@@ -72,7 +46,6 @@ layout: default
         </div>
       </aside>
 
-      <!-- CENTER COLUMN -->
       <section class="main">
         <div class="heroPanel reveal">
           <div class="heroRow">
@@ -83,8 +56,8 @@ layout: default
               </p>
             </div>
             <div class="heroActions">
-              <a class="btn primary" href="#library" id="jumpLibrary">Browse everything</a>
-              <button class="btn" id="copyStarterPrompt">Copy a starter prompt</button>
+              <a class="btn primary" href="{{ '/library/' | relative_url }}">Browse everything</a>
+              <a class="btn" href="{{ '/library/starter-pack/' | relative_url }}">Open starter pack</a>
               <span class="pill" id="resultsPill">Showing: recent updates</span>
             </div>
           </div>
@@ -96,21 +69,21 @@ layout: default
         </div>
 
         <div class="feed" id="feed">
-          <a class="post reveal" href="#library" data-view="updates writing" data-type="prompt workflow" data-tags="email rewrite tone warm professional concise" style="--glow: rgba(37,99,235,.20)">
+          <a class="post reveal" href="{{ '/library/email-rewrite/' | relative_url }}" data-view="updates writing" data-type="prompt workflow" data-tags="email rewrite tone warm professional concise" style="--glow: rgba(37,99,235,.20)">
             <div class="postTop"><span class="type">Prompt • Writing</span><span class="pill">New</span></div>
             <div class="postTitle">Email rewrite: warm-professional, no drift</div>
             <div class="postDesc">Two versions (concise + detailed), flags ambiguity, preserves facts and intent.</div>
             <div class="chips"><span class="chip">tone control</span><span class="chip">review step</span><span class="chip">low-risk start</span></div>
           </a>
 
-          <a class="post reveal" href="#library" data-view="updates meetings" data-type="template workflow" data-tags="meeting notes minutes action items follow ups agenda" style="--glow: rgba(14,165,166,.18)">
+          <a class="post reveal" href="{{ '/library/meeting-minutes/' | relative_url }}" data-view="updates meetings" data-type="template workflow" data-tags="meeting notes minutes action items follow ups agenda" style="--glow: rgba(14,165,166,.18)">
             <div class="postTop"><span class="type">Template • Meetings</span><span class="pill">New</span></div>
             <div class="postTitle">Meeting minutes format: decisions + actions</div>
             <div class="postDesc">Turns rough notes into a clean record with owners, dates, and open questions.</div>
             <div class="chips"><span class="chip">minutes</span><span class="chip">actions</span><span class="chip">follow-up</span></div>
           </a>
 
-          <a class="post reveal" href="#library" data-view="updates policy" data-type="guide" data-tags="policy safe privacy confidential redaction checklist" style="--glow: rgba(124,58,237,.14)">
+          <a class="post reveal" href="{{ '/library/redaction-checklist/' | relative_url }}" data-view="updates policy" data-type="guide" data-tags="policy safe privacy confidential redaction checklist" style="--glow: rgba(124,58,237,.14)">
             <div class="postTop"><span class="type">Guide • Policy-safe</span><span class="pill">New</span></div>
             <div class="postTitle">Redaction checklist: what not to paste into AI</div>
             <div class="postDesc">A quick boundary list and a safe way to summarize sensitive text.</div>
@@ -118,23 +91,21 @@ layout: default
           </a>
         </div>
 
-        <div id="library" style="height:14px;"></div>
-
-        <div class="soft reveal" id="starter" style="padding:14px; margin-top:12px;">
-          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-            <div>
-              <strong style="font-size:14px;">Get the starter pack</strong>
-              <div style="margin-top:4px; color:var(--muted); font-size:13px;">Templates + prompts for writing, meetings, and safe use. No hype.</div>
-            </div>
-            <form id="starterForm" class="miniForm" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin:0;">
-              <input type="email" placeholder="Email address" aria-label="Email address" style="width:min(340px, 100%);"/>
-              <button class="btn primary" type="submit">Send it</button>
-            </form>
+        <div class="sideSection reveal" style="margin-top:12px;">
+          <div class="sideHead">
+            <strong>Starter pack</strong>
+            <span class="pill">Bundle</span>
+          </div>
+          <div style="margin-top:4px; color:var(--muted); font-size:13px;">
+            A small set of reusable prompts and templates to get started calmly.
+          </div>
+          <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn" href="{{ '/library/' | relative_url }}">See library</a>
+            <a class="btn primary" href="{{ '/library/starter-pack/' | relative_url }}">Open pack</a>
           </div>
         </div>
       </section>
 
-      <!-- RIGHT RAIL -->
       <aside class="rail reveal">
         <div class="railBox">
           <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
@@ -142,20 +113,20 @@ layout: default
             <span class="pill">10 minutes</span>
           </div>
           <div class="railList">
-            <a class="quick" href="#library"><span>Write one better email</span><span class="pill">Writing</span></a>
-            <a class="quick" href="#library"><span>Turn notes into minutes</span><span class="pill">Meetings</span></a>
-            <a class="quick" href="#library"><span>Summarize a document safely</span><span class="pill">Policy</span></a>
+            <a class="quick" href="{{ '/library/email-rewrite/' | relative_url }}"><span>Write one better email</span><span class="pill">Writing</span></a>
+            <a class="quick" href="{{ '/library/meeting-minutes/' | relative_url }}"><span>Turn notes into minutes</span><span class="pill">Meetings</span></a>
+            <a class="quick" href="{{ '/library/safe-summary/' | relative_url }}"><span>Summarize a document safely</span><span class="pill">Policy</span></a>
           </div>
         </div>
 
         <div class="railBox">
           <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
-            <strong>Try a prompt</strong>
-            <span class="pill">Copy</span>
+            <strong>More templates</strong>
+            <span class="pill">Library</span>
           </div>
           <div class="railList">
-            <button class="btn" id="copyEmailPrompt" style="width:100%; justify-content:center;">Copy email rewrite prompt</button>
-            <button class="btn" id="copyMinutesPrompt" style="width:100%; justify-content:center;">Copy minutes prompt</button>
+            <a class="btn" style="width:100%;" href="{{ '/library/decision-record/' | relative_url }}">Decision record template</a>
+            <a class="btn" style="width:100%;" href="{{ '/library/report-outline/' | relative_url }}">Report outline generator</a>
           </div>
         </div>
       </aside>
@@ -163,12 +134,3 @@ layout: default
     </div>
   </div>
 </main>
-
-<!-- Mobile dock -->
-<div class="mobileDock">
-  <div class="dockRow">
-    <a class="btn" href="#library">Library</a>
-    <button class="btn" id="mobileCopy">Copy prompt</button>
-    <a class="btn primary" href="#starter">Starter pack</a>
-  </div>
-</div>

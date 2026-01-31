@@ -1,6 +1,9 @@
-# Office AI Playbook — Jekyll Theme (Dashboard)
+# Office AI Playbook — Jekyll Theme (Dashboard + Item Pages)
 
-Dashboard-style homepage theme for **Office AI Playbook**.
+This theme includes:
+- Dashboard-style homepage
+- Library index page
+- Individual item pages (the homepage cards link to these)
 
 ## Run locally
 
@@ -14,7 +17,8 @@ Open: http://localhost:4000
 ## Where to edit
 
 - Homepage: `index.html`
-- Layout: `_layouts/default.html`
-- Head meta + CSS link: `_includes/head.html`
+- Library index: `library/index.html`
+- Item pages: `library/<slug>/index.html`
+- Layouts: `_layouts/default.html`, `_layouts/item.html`
 - Styles: `assets/css/style.css`
 - Scripts: `assets/js/main.js`

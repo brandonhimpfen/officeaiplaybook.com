@@ -1,0 +1,52 @@
+---
+title: Summarize a document safely
+description: A structured summary method that avoids identifiers and asks you to verify.
+layout: item
+category: Policy-safe
+subtitle: A structured summary method that avoids identifiers and asks you to verify.
+time: 8 min
+level: Practical
+tag: Workflow
+related:
+  - label: Meeting minutes template
+    tag: Meetings
+    url: /library/meeting-minutes/
+  - label: Safe summary workflow
+    tag: Policy
+    url: /library/safe-summary/
+  - label: Decision record template
+    tag: Analysis
+    url: /library/decision-record/
+---
+## When to use
+
+Use this for policies, memos, reports, or long threads when you want a clean summary without copying sensitive details.
+## Prompt
+
+Use the prompt below after sanitizing the text. The output includes a verification step.
+
+<div class="codebox">
+  <div class="codebar">
+    <strong style="font-size:13px;">Safe summary prompt</strong>
+    <button class="btn" data-copy="#code-safe-summary">Copy</button>
+  </div>
+  <pre id="code-safe-summary">Summarize this document safely.
+
+Rules:
+- Do not include identifiers, names, or sensitive details.
+- If something is uncertain, say so.
+- Output should be useful for a coworker who hasn't read it.
+
+Provide:
+1) 5-line overview
+2) Key points (facts only)
+3) Decisions / requirements (if present)
+4) Risks / open questions
+5) What I should verify
+
+SANITIZED TEXT:
+[PASTE HERE]</pre>
+</div>
+## Review step
+
+Compare the summary against the original for nuance, especially around requirements and dates.

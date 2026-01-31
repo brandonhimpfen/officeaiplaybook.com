@@ -1,0 +1,54 @@
+---
+title: Report outline generator
+description: Moves scattered notes into a logical outline that reads like a decision document.
+layout: item
+category: Writing
+subtitle: Moves scattered notes into a logical outline that reads like a decision document.
+time: 10 min
+level: Practical
+tag: Workflow
+related:
+  - label: Decision record template
+    tag: Analysis
+    url: /library/decision-record/
+  - label: Email rewrite prompt
+    tag: Writing
+    url: /library/email-rewrite/
+  - label: Safe summary workflow
+    tag: Policy
+    url: /library/safe-summary/
+---
+## When to use
+
+Use this before writing a report, briefing note, or internal memo. It’s a fast way to impose structure.
+## Prompt
+
+Paste your rough notes (sanitized if needed) and request an outline plus questions to confirm.
+
+<div class="codebox">
+  <div class="codebar">
+    <strong style="font-size:13px;">Outline prompt</strong>
+    <button class="btn" data-copy="#code-outline">Copy</button>
+  </div>
+  <pre id="code-outline">Create a report outline from these notes.
+
+Rules:
+- Do not invent facts.
+- Keep headings descriptive.
+- End with “Questions to confirm” if information is missing.
+
+Output:
+- Title
+- Executive summary (3–5 bullets)
+- Background
+- Findings (grouped)
+- Options (if applicable)
+- Recommendation (if applicable)
+- Appendix: source notes
+
+NOTES:
+[PASTE HERE]</pre>
+</div>
+## Next step
+
+Draft one section at a time. Keep a “facts only” pass separate from “recommendation” wording.

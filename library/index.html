@@ -1,0 +1,76 @@
+---
+title: Library
+description: Browse templates, prompts, and workflows.
+layout: default
+---
+
+{% include header.html %}
+
+<main class="shell">
+  <div class="container">
+    <div class="itemHero reveal">
+      <div class="itemBreadcrumb">
+        <a href="{{ '/' | relative_url }}">Dashboard</a>
+        <span class="dot">•</span>
+        <span>Library</span>
+      </div>
+      <h1>Library</h1>
+      <p class="itemSub">Open an item, copy the prompt or template, then adapt it to your work. Everything assumes human review.</p>
+      <div class="itemMeta">
+        <span class="pill">Prompts</span>
+        <span class="pill">Templates</span>
+        <span class="pill">Workflows</span>
+        <span class="pill">Policy-safe</span>
+      </div>
+    </div>
+
+    <div class="itemCard reveal">
+      <h2>Core items</h2>
+      <p>These are the items linked from the dashboard.</p>
+
+      <div class="feed" style="margin-top:12px;">
+        <a class="post" href="{{ '/library/email-rewrite/' | relative_url }}" style="--glow: rgba(37,99,235,.20)">
+          <div class="postTop"><span class="type">Prompt • Writing</span><span class="pill">Core</span></div>
+          <div class="postTitle">Email rewrite: warm-professional, no drift</div>
+          <div class="postDesc">Two versions, flags ambiguity, preserves intent.</div>
+        </a>
+
+        <a class="post" href="{{ '/library/meeting-minutes/' | relative_url }}" style="--glow: rgba(14,165,166,.18)">
+          <div class="postTop"><span class="type">Template • Meetings</span><span class="pill">Core</span></div>
+          <div class="postTitle">Meeting minutes: decisions + actions</div>
+          <div class="postDesc">Clean record with owners, dates, and open questions.</div>
+        </a>
+
+        <a class="post" href="{{ '/library/redaction-checklist/' | relative_url }}" style="--glow: rgba(124,58,237,.14)">
+          <div class="postTop"><span class="type">Guide • Policy-safe</span><span class="pill">Core</span></div>
+          <div class="postTitle">Redaction checklist</div>
+          <div class="postDesc">What not to paste, and how to summarize safely.</div>
+        </a>
+
+        <a class="post" href="{{ '/library/safe-summary/' | relative_url }}" style="--glow: rgba(124,58,237,.12)">
+          <div class="postTop"><span class="type">Workflow • Policy-safe</span><span class="pill">Core</span></div>
+          <div class="postTitle">Summarize a document safely</div>
+          <div class="postDesc">A safe, structured method for sensitive content.</div>
+        </a>
+
+        <a class="post" href="{{ '/library/decision-record/' | relative_url }}" style="--glow: rgba(37,99,235,.14)">
+          <div class="postTop"><span class="type">Template • Analysis</span><span class="pill">Core</span></div>
+          <div class="postTitle">Decision record template</div>
+          <div class="postDesc">Captures the “why” so decisions remain readable later.</div>
+        </a>
+
+        <a class="post" href="{{ '/library/report-outline/' | relative_url }}" style="--glow: rgba(14,165,166,.12)">
+          <div class="postTop"><span class="type">Workflow • Writing</span><span class="pill">Core</span></div>
+          <div class="postTitle">Report outline generator</div>
+          <div class="postDesc">Turns notes into a coherent structure.</div>
+        </a>
+
+        <a class="post" href="{{ '/library/starter-pack/' | relative_url }}" style="--glow: rgba(37,99,235,.10)">
+          <div class="postTop"><span class="type">Bundle • Downloads</span><span class="pill">Pack</span></div>
+          <div class="postTitle">Starter pack</div>
+          <div class="postDesc">A small set of reusable prompts and templates.</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</main>

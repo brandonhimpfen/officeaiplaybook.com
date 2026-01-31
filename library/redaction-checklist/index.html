@@ -1,0 +1,49 @@
+---
+title: Redaction checklist: what not to paste into AI
+description: A quick boundary list and a safe way to summarize sensitive text.
+layout: item
+category: Policy-safe
+subtitle: A quick boundary list and a safe way to summarize sensitive text.
+time: 6 min
+level: Practical
+tag: Checklist
+related:
+  - label: Safe summary workflow
+    tag: Policy
+    url: /library/safe-summary/
+  - label: Meeting minutes template
+    tag: Meetings
+    url: /library/meeting-minutes/
+  - label: Email rewrite prompt
+    tag: Writing
+    url: /library/email-rewrite/
+---
+## What to remove
+
+This is a practical boundary list. If your workplace has stricter rules, follow them.
+
+<div class="codebox">
+  <div class="codebar">
+    <strong style="font-size:13px;">Redaction + safe summary template</strong>
+    <button class="btn" data-copy="#code-redact">Copy</button>
+  </div>
+  <pre id="code-redact">Before using AI, remove or replace:
+- Names, emails, phone numbers, addresses
+- Client/patient identifiers and account numbers
+- Internal IDs, credentials, tokens, secrets
+- Confidential financials not meant for sharing
+- Anything covered by policy or NDA
+
+Then summarize like this:
+Context (safe):
+- [What this is]
+Goal:
+- [What you need]
+Constraints:
+- [Rules, deadlines, tone]
+Input excerpt (sanitized):
+- [Non-sensitive excerpt]</pre>
+</div>
+## A safer pattern
+
+Instead of pasting the whole document, describe the goal and provide only the minimum sanitized excerpt needed.
