@@ -6,48 +6,55 @@
 <body>
   {% include header.html %}
 
-  {%- assign is_library = page.url contains '/library/' -%}
-  {%- assign is_library_index = page.url == '/library/' -%}
-  {%- assign is_starter_pack = page.url contains '/library/starter-pack/' -%}
+  {%- comment -%}
+  GitHub Pages (Liquid/Jekyll safe mode) can choke on "not" and boolean assigns.
+  Use direct conditionals + unless blocks instead.
+  This wrapper only applies to /library/<item>/ pages, NOT:
+  - /library/
+  - /library/starter-pack/
+  {%- endcomment -%}
 
-  {%- if is_library and not is_library_index and not is_starter_pack -%}
-    <!-- Library item pages: keep cohesive chrome + neat reading width -->
-    <main class="shell">
-      <div class="container">
-        <div class="readingShell">
-          <div class="readingHero">
-            <div class="itemBreadcrumb">
-              <a href="{{ '/library/' | relative_url }}">Library</a>
-              <span class="dot">•</span>
-              <span>{{ page.category | default: 'Item' }}</span>
+  {% if page.url contains '/library/' %}
+    {% unless page.url == '/library/' or page.url contains '/library/starter-pack/' %}
+      <main class="shell">
+        <div class="container">
+          <div class="readingShell">
+            <div class="readingHero">
+              <div class="itemBreadcrumb">
+                <a href="{{ '/library/' | relative_url }}">Library</a>
+                <span class="dot">•</span>
+                <span>{{ page.category | default: 'Item' }}</span>
+              </div>
+              <h1 style="margin:0; font-size:clamp(22px, 2.2vw, 30px); line-height:1.12; letter-spacing:-.01em;">
+                {{ page.title }}
+              </h1>
+              {% if page.subtitle %}
+                <p class="itemSub">{{ page.subtitle }}</p>
+              {% endif %}
+              <div class="itemMeta">
+                {% if page.time %}<span class="pill">{{ page.time }}</span>{% endif %}
+                {% if page.level %}<span class="pill">{{ page.level }}</span>{% endif %}
+                {% if page.tag %}<span class="pill">{{ page.tag }}</span>{% endif %}
+              </div>
             </div>
-            <h1 style="margin:0; font-size:clamp(22px, 2.2vw, 30px); line-height:1.12; letter-spacing:-.01em;">
-              {{ page.title }}
-            </h1>
-            {% if page.subtitle %}
-              <p class="itemSub">{{ page.subtitle }}</p>
-            {% endif %}
-            <div class="itemMeta">
-              {% if page.time %}<span class="pill">{{ page.time }}</span>{% endif %}
-              {% if page.level %}<span class="pill">{{ page.level }}</span>{% endif %}
-              {% if page.tag %}<span class="pill">{{ page.tag }}</span>{% endif %}
+
+            <div class="itemCard prose">
+              {{ content | markdownify }}
             </div>
-          </div>
 
-          <div class="itemCard prose">
-            {{ content | markdownify }}
-          </div>
-
-          <div class="itemFooter">
-            <a class="btn" href="{{ '/library/' | relative_url }}">Back to library</a>
-            <a class="btn primary" href="{{ '/' | relative_url }}">Return to dashboard</a>
+            <div class="itemFooter">
+              <a class="btn" href="{{ '/library/' | relative_url }}">Back to library</a>
+              <a class="btn primary" href="{{ '/' | relative_url }}">Return to dashboard</a>
+            </div>
           </div>
         </div>
-      </div>
-    </main>
-  {%- else -%}
+      </main>
+    {% else %}
+      {{ content }}
+    {% endunless %}
+  {% else %}
     {{ content }}
-  {%- endif -%}
+  {% endif %}
 
   {% include footer.html %}
   <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
