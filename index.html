@@ -11,35 +11,30 @@ layout: default
       <aside class="sidebar reveal">
         <div class="sideSection">
           <div class="sideHead">
-            <strong>Navigation</strong>
-            <span class="pill">Dashboard</span>
+            <strong>Handbook</strong>
+            <span class="pill">Navigate</span>
           </div>
 
-          <div class="navList" id="navList">
-            <a class="navItem active" href="#" data-view="updates"><span>Recent updates</span><span class="pill">New</span></a>
-            <a class="navItem" href="#" data-view="writing"><span>Writing</span><span class="pill">Workflows</span></a>
-            <a class="navItem" href="#" data-view="meetings"><span>Meetings</span><span class="pill">Templates</span></a>
-            <a class="navItem" href="#" data-view="analysis"><span>Analysis</span><span class="pill">Briefs</span></a>
-            <a class="navItem" href="#" data-view="policy"><span>Policy-safe</span><span class="pill">Rules</span></a>
-            <a class="navItem" href="#" data-view="downloads"><span>Downloads</span><span class="pill">PDF</span></a>
+          <div class="navList">
+            <a class="navItem active" href="{{ '/playbook/' | relative_url }}"><span>Playbook</span><span class="pill">Series</span></a>
+            <a class="navItem" href="{{ '/library/' | relative_url }}"><span>Library</span><span class="pill">Tools</span></a>
+            <a class="navItem" href="{{ '/library/starter-pack/' | relative_url }}"><span>Starter pack</span><span class="pill">Bundle</span></a>
           </div>
 
           <div class="hint">
-            <strong>Calm rule:</strong> every item assumes human review. If it can be wrong, it must be checked.
+            <strong>Calm rule:</strong> never paste confidential or private information into AI tools. Use high-level summaries only.
           </div>
         </div>
 
         <div class="sideSection">
           <div class="sideHead">
-            <strong>Quick filters</strong>
-            <span class="pill" id="filterPill">All</span>
+            <strong>Start here</strong>
+            <span class="pill">Quick</span>
           </div>
-          <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <button class="btn" style="padding:8px 10px; font-size:12px;" data-filter="all">All</button>
-            <button class="btn" style="padding:8px 10px; font-size:12px;" data-filter="workflow">Workflows</button>
-            <button class="btn" style="padding:8px 10px; font-size:12px;" data-filter="template">Templates</button>
-            <button class="btn" style="padding:8px 10px; font-size:12px;" data-filter="prompt">Prompts</button>
-            <button class="btn" style="padding:8px 10px; font-size:12px;" data-filter="guide">Guides</button>
+          <div class="navList">
+            <a class="navItem" href="{{ '/playbook/01-5-minute-daily-setup/' | relative_url }}"><span>Episode 1</span><span class="pill">Daily</span></a>
+            <a class="navItem" href="{{ '/library/redaction-checklist/' | relative_url }}"><span>Redaction checklist</span><span class="pill">Policy</span></a>
+            <a class="navItem" href="{{ '/library/email-rewrite/' | relative_url }}"><span>Email rewrite prompt</span><span class="pill">Writing</span></a>
           </div>
         </div>
       </aside>
@@ -48,83 +43,84 @@ layout: default
         <div class="heroPanel reveal">
           <div class="heroRow">
             <div>
-              <h1>Your calm dashboard for learning AI at work.</h1>
+              <h1>Office-ready AI workflows you can reuse.</h1>
               <p>
-                This isn’t a feed. It’s a handbook. Pick a category, open an item, copy the template, and reuse it next week.
+                The Playbook is the main course: short episodes you can repeat weekly. The Library is the supporting toolkit: prompts, templates, and checklists.
               </p>
             </div>
             <div class="heroActions">
-              <a class="btn primary" href="{{ '/library/' | relative_url }}">Browse everything</a>
-              <a class="btn" href="{{ '/library/starter-pack/' | relative_url }}">Open starter pack</a>
-              <span class="pill" id="resultsPill">Showing: recent updates</span>
+              <a class="btn primary" href="{{ '/playbook/' | relative_url }}">Read the Playbook</a>
+              <a class="btn" href="{{ '/library/' | relative_url }}">Browse the Library</a>
+              <span class="pill">Human review first</span>
             </div>
           </div>
         </div>
 
         <div class="sectionTitle">
-          <strong id="feedTitle">Recent updates</strong>
-          <span id="feedSubtitle">New items added to the library</span>
+          <strong>Latest Playbook episodes</strong>
+          <span>Workflow-first, low mental load</span>
+        </div>
+
+        <div class="feed">
+          <a class="post reveal" href="{{ '/playbook/01-5-minute-daily-setup/' | relative_url }}" style="--glow: rgba(37,99,235,.20)">
+            <div class="postTop"><span class="type">Playbook • Episode 1</span><span class="pill">Quick read</span></div>
+            <div class="postTitle">The 5-Minute Daily Setup</div>
+            <div class="postDesc">A repeatable morning workflow to start with clarity, priorities, and ready-to-use templates.</div>
+            <div class="chips"><span class="chip">daily setup</span><span class="chip">priorities</span><span class="chip">safe use</span></div>
+          </a>
+        </div>
+
+        <div class="sectionTitle" style="margin-top:14px;">
+          <strong>Supporting library tools</strong>
+          <span>Copy, adapt, reuse</span>
         </div>
 
         <div class="feed" id="feed">
-          <a class="post reveal" href="{{ '/library/email-rewrite/' | relative_url }}" data-view="updates writing" data-type="prompt workflow" data-tags="email rewrite tone warm professional concise" style="--glow: rgba(37,99,235,.20)">
-            <div class="postTop"><span class="type">Prompt • Writing</span><span class="pill">New</span></div>
+          <a class="post reveal" href="{{ '/library/email-rewrite/' | relative_url }}" style="--glow: rgba(37,99,235,.16)">
+            <div class="postTop"><span class="type">Prompt • Writing</span><span class="pill">Tool</span></div>
             <div class="postTitle">Email rewrite: warm-professional, no drift</div>
-            <div class="postDesc">Two versions (concise + detailed), flags ambiguity, preserves facts and intent.</div>
-            <div class="chips"><span class="chip">tone control</span><span class="chip">review step</span><span class="chip">low-risk start</span></div>
+            <div class="postDesc">Make drafts clearer and calmer without changing facts or intent.</div>
+            <div class="chips"><span class="chip">tone control</span><span class="chip">review step</span><span class="chip">placeholders</span></div>
           </a>
 
-          <a class="post reveal" href="{{ '/library/meeting-minutes/' | relative_url }}" data-view="updates meetings" data-type="template workflow" data-tags="meeting notes minutes action items follow ups agenda" style="--glow: rgba(14,165,166,.18)">
-            <div class="postTop"><span class="type">Template • Meetings</span><span class="pill">New</span></div>
-            <div class="postTitle">Meeting minutes format: decisions + actions</div>
-            <div class="postDesc">Turns rough notes into a clean record with owners, dates, and open questions.</div>
+          <a class="post reveal" href="{{ '/library/meeting-minutes/' | relative_url }}" style="--glow: rgba(14,165,166,.14)">
+            <div class="postTop"><span class="type">Template • Meetings</span><span class="pill">Tool</span></div>
+            <div class="postTitle">Meeting minutes: decisions + actions</div>
+            <div class="postDesc">Turn rough notes into minutes with owners, dates, and open questions.</div>
             <div class="chips"><span class="chip">minutes</span><span class="chip">actions</span><span class="chip">follow-up</span></div>
           </a>
 
-          <a class="post reveal" href="{{ '/library/redaction-checklist/' | relative_url }}" data-view="updates policy" data-type="guide" data-tags="policy safe privacy confidential redaction checklist" style="--glow: rgba(124,58,237,.14)">
-            <div class="postTop"><span class="type">Guide • Policy-safe</span><span class="pill">New</span></div>
-            <div class="postTitle">Redaction checklist: what not to paste into AI</div>
-            <div class="postDesc">A quick boundary list and a safe way to summarize sensitive text.</div>
+          <a class="post reveal" href="{{ '/library/redaction-checklist/' | relative_url }}" style="--glow: rgba(124,58,237,.12)">
+            <div class="postTop"><span class="type">Guide • Policy-safe</span><span class="pill">Tool</span></div>
+            <div class="postTitle">Redaction checklist</div>
+            <div class="postDesc">What not to paste into AI tools, and how to summarize safely.</div>
             <div class="chips"><span class="chip">privacy</span><span class="chip">boundaries</span><span class="chip">safe use</span></div>
           </a>
-        </div>
-
-        <div class="sideSection reveal" style="margin-top:12px;">
-          <div class="sideHead">
-            <strong>Starter pack</strong>
-            <span class="pill">Bundle</span>
-          </div>
-          <div style="margin-top:4px; color:var(--muted); font-size:13px;">
-            A small set of reusable prompts and templates to get started calmly.
-          </div>
-          <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
-            <a class="btn" href="{{ '/library/' | relative_url }}">See library</a>
-            <a class="btn primary" href="{{ '/library/starter-pack/' | relative_url }}">Open pack</a>
-          </div>
         </div>
       </section>
 
       <aside class="rail reveal">
         <div class="railBox">
           <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
-            <strong>Quick starts</strong>
-            <span class="pill">10 minutes</span>
+            <strong>Episode 1 quick start</strong>
+            <span class="pill">5 minutes</span>
           </div>
           <div class="railList">
-            <a class="quick" href="{{ '/library/email-rewrite/' | relative_url }}"><span>Write one better email</span><span class="pill">Writing</span></a>
-            <a class="quick" href="{{ '/library/meeting-minutes/' | relative_url }}"><span>Turn notes into minutes</span><span class="pill">Meetings</span></a>
-            <a class="quick" href="{{ '/library/safe-summary/' | relative_url }}"><span>Summarize a document safely</span><span class="pill">Policy</span></a>
+            <a class="quick" href="{{ '/playbook/01-5-minute-daily-setup/' | relative_url }}"><span>Read the workflow</span><span class="pill">Playbook</span></a>
+            <a class="quick" href="{{ '/library/redaction-checklist/' | relative_url }}"><span>Safe-use boundaries</span><span class="pill">Policy</span></a>
+            <a class="quick" href="{{ '/library/email-rewrite/' | relative_url }}"><span>Draft the 2 emails</span><span class="pill">Writing</span></a>
           </div>
         </div>
 
         <div class="railBox">
           <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
-            <strong>More templates</strong>
-            <span class="pill">Library</span>
+            <strong>Next episode</strong>
+            <span class="pill">Coming</span>
           </div>
           <div class="railList">
-            <a class="btn" style="width:100%;" href="{{ '/library/decision-record/' | relative_url }}">Decision record template</a>
-            <a class="btn" style="width:100%;" href="{{ '/library/report-outline/' | relative_url }}">Report outline generator</a>
+            <div class="quick" style="cursor:default;">
+              <span>Email faster, still human</span><span class="pill">Episode 2</span>
+            </div>
           </div>
         </div>
       </aside>

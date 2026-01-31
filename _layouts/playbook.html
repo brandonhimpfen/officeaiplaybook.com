@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  {% include head.html %}
+</head>
+<body>
+  {% include header.html %}
+
+  <main class="shell">
+    <div class="container">
+      <div class="playbookShell">
+        <aside class="playbookAside reveal">
+          <div class="sideSection">
+            <div class="sideHead">
+              <strong>Playbook</strong>
+              <span class="pill">Series</span>
+            </div>
+            <div class="navList">
+              <a class="navItem" href="{{ '/playbook/' | relative_url }}"><span>All posts</span><span class="pill">Index</span></a>
+              <a class="navItem" href="{{ '/' | relative_url }}"><span>Dashboard</span><span class="pill">Home</span></a>
+              <a class="navItem" href="{{ '/library/' | relative_url }}"><span>Library</span><span class="pill">Tools</span></a>
+            </div>
+            <div class="hint">
+              <strong>Calm rule:</strong> use summaries only. Never paste private or confidential information into AI tools.
+            </div>
+          </div>
+
+          {% if page.supporting_library %}
+          <div class="sideSection">
+            <div class="sideHead">
+              <strong>Supporting library</strong>
+              <span class="pill">Links</span>
+            </div>
+            <div class="navList">
+              {% for it in page.supporting_library %}
+                <a class="navItem" href="{{ it.url | relative_url }}"><span>{{ it.label }}</span><span class="pill">{{ it.tag }}</span></a>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+        </aside>
+
+        <section class="playbookMain">
+          <div class="playbookMainInner">
+            <div class="playbookHero reveal">
+              <div class="itemBreadcrumb">
+                <a href="{{ '/playbook/' | relative_url }}">Playbook</a>
+                <span class="dot">•</span>
+                <span>Episode {{ page.episode | default: '?' }}</span>
+              </div>
+
+              <h1>{{ page.title }}</h1>
+              {% if page.subtitle %}<p class="itemSub">{{ page.subtitle }}</p>{% endif %}
+
+              <div class="itemMeta">
+                {% if page.read_time %}<span class="pill">{{ page.read_time }}</span>{% endif %}
+                {% if page.category %}<span class="pill">{{ page.category }}</span>{% endif %}
+                {% if page.tagline %}<span class="pill">{{ page.tagline }}</span>{% endif %}
+              </div>
+            </div>
+
+            <article class="itemCard prose reveal">
+              {{ content | markdownify }}
+            </article>
+
+            <div class="itemFooter reveal">
+              <a class="btn" href="{{ '/playbook/' | relative_url }}">Back to Playbook</a>
+              <a class="btn primary" href="{{ '/library/' | relative_url }}">Open Library tools</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  {% include footer.html %}
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+---
+layout: default
+title: Playbook
+description: Office-ready AI workflows you can reuse.
+---
+
+<main class="shell">
+  <div class="container">
+    <div class="pageGrid two">
+      <section class="reveal">
+        <div class="itemHero">
+          <div class="itemBreadcrumb">
+            <a href="{{ '/' | relative_url }}">Dashboard</a>
+            <span class="dot">•</span>
+            <span>Playbook</span>
+          </div>
+          <h1>The Office AI Playbook</h1>
+          <p class="itemSub">Short, repeatable workflows that reduce mental load. Each post includes an office-safe boundary and reusable copy/paste prompts.</p>
+          <div class="itemMeta">
+            <span class="pill">LinkedIn series</span>
+            <span class="pill">Workflow-first</span>
+            <span class="pill">Privacy-aware</span>
+          </div>
+        </div>
+
+        <div class="itemCard reveal">
+          <div class="sectionTitle" style="margin-top:0;">
+            <strong>Episodes</strong>
+            <span>Newest first</span>
+          </div>
+
+          <div class="feed">
+            {% assign pb = site.pages | where_exp: "p","p.url contains '/playbook/'" %}
+            {% assign episodes = pb | where_exp: "p","p.episode" | sort: "episode" | reverse %}
+
+            {% for post in episodes %}
+              <a class="post" href="{{ post.url | relative_url }}" style="--glow: rgba(37,99,235,.16)">
+                <div class="postTop">
+                  <span class="type">Playbook • Episode {{ post.episode }}</span>
+                  <span class="pill">{{ post.read_time | default: "Quick read" }}</span>
+                </div>
+                <div class="postTitle">{{ post.title }}</div>
+                <div class="postDesc">{{ post.subtitle | default: post.description }}</div>
+                <div class="chips">
+                  {% if post.category %}<span class="chip">{{ post.category }}</span>{% endif %}
+                  <span class="chip">repeatable workflow</span>
+                  <span class="chip">office-safe</span>
+                </div>
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+      <aside class="reveal">
+        <div class="railBox">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+            <strong>How to use</strong>
+            <span class="pill">Simple</span>
+          </div>
+          <div class="railList">
+            <div class="quick" style="cursor:default;">
+              <span>Read one episode</span><span class="pill">1</span>
+            </div>
+            <div class="quick" style="cursor:default;">
+              <span>Copy the prompt</span><span class="pill">2</span>
+            </div>
+            <div class="quick" style="cursor:default;">
+              <span>Review before sending</span><span class="pill">3</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="railBox">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+            <strong>Supporting library</strong>
+            <span class="pill">Tools</span>
+          </div>
+          <div class="railList">
+            <a class="quick" href="{{ '/library/email-rewrite/' | relative_url }}"><span>Email rewrite prompt</span><span class="pill">Writing</span></a>
+            <a class="quick" href="{{ '/library/meeting-minutes/' | relative_url }}"><span>Meeting minutes template</span><span class="pill">Meetings</span></a>
+            <a class="quick" href="{{ '/library/redaction-checklist/' | relative_url }}"><span>Redaction checklist</span><span class="pill">Policy</span></a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
